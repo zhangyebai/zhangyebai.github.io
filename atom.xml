@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://www.zhangyebai.com/"/>
   <updated>2019-02-12T09:45:23.006Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://www.zhangyebai.com/</id>
   
   <author>
     <name>张夜白</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]</title>
-    <link href="http://yoursite.com/2017/02/19/add-two-numbers/"/>
-    <id>http://yoursite.com/2017/02/19/add-two-numbers/</id>
+    <link href="http://www.zhangyebai.com/2017/02/19/add-two-numbers/"/>
+    <id>http://www.zhangyebai.com/2017/02/19/add-two-numbers/</id>
     <published>2017-02-19T07:08:44.000Z</published>
     <updated>2019-02-12T09:45:23.006Z</updated>
     
@@ -47,17 +47,17 @@ Output: 7 -&amp;gt; 0 -&amp;gt; 8
     
     </summary>
     
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+      <category term="LeetCode" scheme="http://www.zhangyebai.com/categories/LeetCode/"/>
     
     
-      <category term="leetcode,Java,Python,C++" scheme="http://yoursite.com/tags/leetcode-Java-Python-C/"/>
+      <category term="leetcode,Java,Python,C++" scheme="http://www.zhangyebai.com/tags/leetcode-Java-Python-C/"/>
     
   </entry>
   
   <entry>
     <title>Singleton - 单例模式 - Java</title>
-    <link href="http://yoursite.com/2017/02/13/Singleton/"/>
-    <id>http://yoursite.com/2017/02/13/Singleton/</id>
+    <link href="http://www.zhangyebai.com/2017/02/13/Singleton/"/>
+    <id>http://www.zhangyebai.com/2017/02/13/Singleton/</id>
     <published>2017-02-13T15:48:30.000Z</published>
     <updated>2019-02-12T07:44:10.375Z</updated>
     
@@ -86,21 +86,21 @@ Output: 7 -&amp;gt; 0 -&amp;gt; 8
     
     </summary>
     
-      <category term="Design Pattern" scheme="http://yoursite.com/categories/Design-Pattern/"/>
+      <category term="Design Pattern" scheme="http://www.zhangyebai.com/categories/Design-Pattern/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://www.zhangyebai.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Design Pattern" scheme="http://yoursite.com/tags/Design-Pattern/"/>
+      <category term="Design Pattern" scheme="http://www.zhangyebai.com/tags/Design-Pattern/"/>
     
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]</title>
-    <link href="http://yoursite.com/2017/02/13/two-sum/"/>
-    <id>http://yoursite.com/2017/02/13/two-sum/</id>
+    <link href="http://www.zhangyebai.com/2017/02/13/two-sum/"/>
+    <id>http://www.zhangyebai.com/2017/02/13/two-sum/</id>
     <published>2017-02-12T21:02:51.000Z</published>
     <updated>2019-02-12T07:44:10.395Z</updated>
     
@@ -134,16 +134,16 @@ return [0, 1].
     
     </summary>
     
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+      <category term="LeetCode" scheme="http://www.zhangyebai.com/categories/LeetCode/"/>
     
     
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
     
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+      <category term="leetcode" scheme="http://www.zhangyebai.com/tags/leetcode/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="http://www.zhangyebai.com/tags/Python/"/>
     
-      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+      <category term="C++" scheme="http://www.zhangyebai.com/tags/C/"/>
     
   </entry>
   
