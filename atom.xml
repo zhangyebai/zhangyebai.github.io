@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhangyebai.com/"/>
-  <updated>2019-02-12T14:06:46.189Z</updated>
+  <updated>2019-02-12T14:10:34.820Z</updated>
   <id>http://www.zhangyebai.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>maximum-sub-array</title>
+    <title>LeetCode - 053 - Maximum-Sub-Array</title>
     <link href="http://www.zhangyebai.com/2019/02/12/maximum-sub-array/"/>
     <id>http://www.zhangyebai.com/2019/02/12/maximum-sub-array/</id>
     <published>2019-02-12T13:37:45.000Z</published>
-    <updated>2019-02-12T14:06:46.189Z</updated>
+    <updated>2019-02-12T14:10:34.820Z</updated>
     
     <content type="html"><![CDATA[<h2 id="description"><a class="markdownIt-Anchor" href="#description"></a> Description</h2><p><a href="https://leetcode-cn.com/problems/maximum-subarray/description/" target="_blank" rel="noopener">官方地址</a></p><ul><li><p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p></li><li><p>示例:</p></li><li><p>输入: [-2,1,-3,4,-1,2,1,-5,4],</p></li><li><p>输出: 6</p></li><li><p>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p></li><li><p>进阶:</p></li><li><p>如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。</p><pre><code> 刷知乎忽然看到的一道题,然后上leetcode上看了一下,虽然标记的是easy,但是第一反应居然只想到o(n^3)暴力法…… 仔细思考了好久,才找到o(n)的解法,非奇思妙想不可得。详情请看一下代码注释。</code></pre></li></ul><a id="more"></a><h2 id="java-solution"><a class="markdownIt-Anchor" href="#java-solution"></a> Java Solution</h2><h3 id="code"><a class="markdownIt-Anchor" href="#code"></a> code</h3><ul><li>✔ Accepted</li><li>✔ 202/202 cases passed (16 ms)</li><li>✔ Your runtime beats 31.02 % of java submissions</li><li>✔ 2019-02-12 21:31:45</li></ul><code><pre><code>class Solution {    public int maxSubArray(int[] nums) {        if (nums.length == 0){            return 0;        }        int sum = nums[0];  //sum保存着跟随idx遍历nums每个索引为结束位置的最大值（不是太好理解）        int max = nums[0];  //max保存着idx及其以前的元素为结束位置的最大值        for ( int idx = 1; idx &lt; nums.length; ++idx){   //注意idx从1开始,因为sum和max不能初始化为0,                                                    //只能初始化为nums[0],因为nums中的元素可能是负数            sum = Math.max(sum + nums[idx], nums[idx]); //注意sum是以idx索引元素为结束位置的最大值（包含idx）            max = Math.max(sum, max);   //        }        return max;    }}</code></pre></code><pre><code>    (max: 全局的最大值,也就是我们要求的结果; sum: 局部最大值,代表的是以某元素结尾的最大值)    -1 2 -3 4 -1    idx = 0: sum = -1, max = -1 (注: 此步骤即是初始化sum和max, 也就是第一个元素为结尾的局部最大值和全局最大值)    idx = 1: sum = (-1 + 2), max = sum = 1    idx = 2: sum = (1 + -3), max = 1    idx = 3: sum = 4, max = sum = 4    idx = 4: sum = (4 + -1), max = 4    所以求得结果max=4    注意到此题有dp解法,后续增加</code></pre>]]></content>
     
