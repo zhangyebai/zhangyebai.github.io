@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Hexo</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="一码平川">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="一码平川">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一码平川">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一码平川" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhangyebai" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">张夜白</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">后端开发</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhangyebai" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode-Java-Python-C/">leetcode,Java,Python,C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/Design-Pattern/" style="font-size: 13px;">Design Pattern</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/leetcode/" style="font-size: 13px;">leetcode</a> <a href="/tags/leetcode-Java-Python-C/" style="font-size: 13px;">leetcode,Java,Python,C++</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/19/add-two-numbers/" class="title">LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-19T07:08:44.000Z" itemprop="datePublished">2017-02-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/Singleton/" class="title">Singleton - 单例模式 - Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-13T15:48:30.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/two-sum/" class="title">LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-12T21:02:51.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  <main class="main" role="main">
+  
+  <div class="content article-list">
+    
+      <article class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/19/add-two-numbers/">LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h1 id="descripiton"><a class="markdownIt-Anchor" href="#descripiton"></a> Descripiton</h1>
+<pre><code>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in  
+reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+给定两个表示非负整数的链表.链表里面的数字是倒叙存储的，链表的每个Node包含一个单独的数字（个位数）。将这两个数相加，并用一个链表返回。  
+这句话什么意思呢？换句话说就是这样：  
+	比如两个正常的非负整数，19 + 21 = 40用上述链表就表示为Node(9)-&gt;Node(1) + Node(1)-&gt;Node(2) = Node(0)-&gt;Node(4);
+	19 + 91 = 110就表示为Node(9)-&gt;Node(1) + Node(1)-&gt;Node(9) = Node(0)-&gt;Node(1)-&gt;Node(1);
+	因为表示顺序是反着的，所以进位也是反着的。
+假设这两个数字不包含任何的头结点0，除了数字0本身。
+</code></pre>
+<h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
+<pre><code>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+</code></pre>
+<h1 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h1>
+<pre><code>通过描述中的大致分析可以看出，需要遍历两个Linked-List中的对应的Node并取数相加，然后生成新Node并添加到result的Link-List中。
+	- 2个Linked-List中对应的Node，如果有一个为null，一个不为null，则结果节点直接使用不为null的Node中的值去构造即可;
+	- 如果两个Node相加需要进位，切记是向后进位，如果有后续Node，计算是需要加上进位;
+	- 如果两个Node相加需要进位，且没有后续Node，则需要添加一个Node，值用进位的数即可;
+	- 以下代码截止到提交日期，均已被LeetCode AC；
+</code></pre>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/02/19/add-two-numbers/" class="article-date">
+	  <time datetime="2017-02-19T07:08:44.000Z" itemprop="datePublished">2月 19</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/leetcode-Java-Python-C/">leetcode,Java,Python,C++</a>
+  </span>
+
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/02/19/add-two-numbers/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/Singleton/">Singleton - 单例模式 - Java</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h1 id="单例模式"><a class="markdownIt-Anchor" href="#单例模式"></a> 单例模式</h1>
+<ul>
+<li>
+<p>One instance of a class or one value accessible globally in an application.</p>
+<ul>
+<li>Ensure that only one instance of a class is created.</li>
+<li>Provide a global point of access to the object.</li>
+</ul>
+</li>
+<li>
+<p>在一个应用程序中，一个类仅有一个实例供外界所用。它所代表的含义有两点:</p>
+<ul>
+<li>确保该唯一实例被创建。</li>
+<li>为外界使用该实例提供一个全局的访问入口。</li>
+<li>对于实现Serializable接口可序列化的单例类，需要实现Object readResolve(){}解决序列化、反序列化过程中造成的多例现象。</li>
+</ul>
+</li>
+</ul>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/02/13/Singleton/" class="article-date">
+	  <time datetime="2017-02-13T15:48:30.000Z" itemprop="datePublished">2月 13</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Design-Pattern/">Design Pattern</a>, <a class="article-tag-link" href="/tags/Java/">Java</a>, <a class="article-tag-link" href="/tags/设计模式/">设计模式</a>
+  </span>
+
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/02/13/Singleton/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/two-sum/">LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h1 id="descripiton"><a class="markdownIt-Anchor" href="#descripiton"></a> Descripiton</h1>
+<pre><code>Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+给定一个整形数组array，给定一个整形目标数target，返回array数组中2个相加等于目标数target的元素索引index。
+假设每次输入的数组都有为恰好只有唯一解，而且不能使用array数组中的元素超过一次。
+</code></pre>
+<h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
+<pre><code>Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+</code></pre>
+<h1 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h1>
+<ul>
+<li>利用map数据结构的Key-Value键值对的存储特点，遍历array数组时，查看当前数组元素value与目标target的差（<strong>target - value</strong>）是否在map的keys中，如果存在说明前面的遍历时找到了第一个value，取出索引并返回当前索引即可;如果没找到，将当前value作为key，当前索引index作为key的value放置进map继续遍历即可。
+<ul>
+<li>Python中map数据结构为字典（dict）</li>
+<li>适当关注一下c++中std::map和std::vector的相关操作</li>
+<li>以下代码截止到提交日期，均已被LeetCode AC</li>
+</ul>
+</li>
+</ul>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/02/13/two-sum/" class="article-date">
+	  <time datetime="2017-02-12T21:02:51.000Z" itemprop="datePublished">2月 13</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/C/">C++</a>, <a class="article-tag-link" href="/tags/Java/">Java</a>, <a class="article-tag-link" href="/tags/Python/">Python</a>, <a class="article-tag-link" href="/tags/leetcode/">leetcode</a>
+  </span>
+
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/02/13/two-sum/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+  </div>
+
+   
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhangyebai" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+</body>
+</html>

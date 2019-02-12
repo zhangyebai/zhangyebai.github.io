@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++] | Hexo</title>
+  <meta name="description" content="Descripiton You are given two non-empty linked lists representing two non-negative integers. The digits are stored in   reverse order and each of their nodes contain a single digit. Add the two numbe">
+<meta name="keywords" content="leetcode,Java,Python,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]">
+<meta property="og:url" content="http://yoursite.com/2017/02/19/add-two-numbers/index.html">
+<meta property="og:site_name" content="一码平川">
+<meta property="og:description" content="Descripiton You are given two non-empty linked lists representing two non-negative integers. The digits are stored in   reverse order and each of their nodes contain a single digit. Add the two numbe">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-12T09:22:55.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]">
+<meta name="twitter:description" content="Descripiton You are given two non-empty linked lists representing two non-negative integers. The digits are stored in   reverse order and each of their nodes contain a single digit. Add the two numbe">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2017/02/19/add-two-numbers/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一码平川" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhangyebai" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">张夜白</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">后端开发</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhangyebai" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode-Java-Python-C/">leetcode,Java,Python,C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/Design-Pattern/" style="font-size: 13px;">Design Pattern</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/leetcode/" style="font-size: 13px;">leetcode</a> <a href="/tags/leetcode-Java-Python-C/" style="font-size: 13px;">leetcode,Java,Python,C++</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/19/add-two-numbers/" class="title">LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-19T07:08:44.000Z" itemprop="datePublished">2017-02-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/Singleton/" class="title">Singleton - 单例模式 - Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-13T15:48:30.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/two-sum/" class="title">LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-12T21:02:51.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-add-two-numbers" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/02/19/add-two-numbers/" class="article-date">
+	  <time datetime="2017-02-19T07:08:44.000Z" itemprop="datePublished">2017-02-19</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/leetcode-Java-Python-C/">leetcode,Java,Python,C++</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/02/19/add-two-numbers/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="descripiton"><a class="markdownIt-Anchor" href="#descripiton"></a> Descripiton</h1>
+<pre><code>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in  
+reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+给定两个表示非负整数的链表.链表里面的数字是倒叙存储的，链表的每个Node包含一个单独的数字（个位数）。将这两个数相加，并用一个链表返回。  
+这句话什么意思呢？换句话说就是这样：  
+	比如两个正常的非负整数，19 + 21 = 40用上述链表就表示为Node(9)-&gt;Node(1) + Node(1)-&gt;Node(2) = Node(0)-&gt;Node(4);
+	19 + 91 = 110就表示为Node(9)-&gt;Node(1) + Node(1)-&gt;Node(9) = Node(0)-&gt;Node(1)-&gt;Node(1);
+	因为表示顺序是反着的，所以进位也是反着的。
+假设这两个数字不包含任何的头结点0，除了数字0本身。
+</code></pre>
+<h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
+<pre><code>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8
+</code></pre>
+<h1 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h1>
+<pre><code>通过描述中的大致分析可以看出，需要遍历两个Linked-List中的对应的Node并取数相加，然后生成新Node并添加到result的Link-List中。
+	- 2个Linked-List中对应的Node，如果有一个为null，一个不为null，则结果节点直接使用不为null的Node中的值去构造即可;
+	- 如果两个Node相加需要进位，切记是向后进位，如果有后续Node，计算是需要加上进位;
+	- 如果两个Node相加需要进位，且没有后续Node，则需要添加一个Node，值用进位的数即可;
+	- 以下代码截止到提交日期，均已被LeetCode AC；
+</code></pre>
+<a id="more"></a>
+<h2 id="python-solution"><a class="markdownIt-Anchor" href="#python-solution"></a> <code>Python Solution</code></h2>
+<h3 id="code"><a class="markdownIt-Anchor" href="#code"></a> code</h3>
+<pre><code>
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
+
+#Node定义
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+#LeetCode的命名规范我已经无力吐槽了
+class Solution(object):
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        """
+            :type l1: ListNode
+            :type l2: ListNode
+            :rtype: ListNode
+        """
+        result = ListNode(0)
+        step = result
+        l_hand, r_hand = l1, l2
+        node_sum = 0
+        while l_hand is not None or r_hand is not None:
+            node_sum //= 10
+            if l_hand is not None:
+                node_sum += l_hand.val
+                l_hand = l_hand.next
+
+            if r_hand is not None:
+                node_sum += r_hand.val
+                r_hand = r_hand.next
+
+            step.next = ListNode(node_sum % 10)
+            step = step.next
+
+        if node_sum // 10 > 0:
+            step.next = ListNode(1)
+
+        return result.next
+#TestCase
+def init_node(param)->ListNode:
+    result_node, temp_node = None, None
+    for value in param:
+        if result_node is None:
+            temp_node = ListNode(value)
+            result_node = temp_node
+            continue
+        temp_node.next = ListNode(value)
+        temp_node = temp_node.next
+
+    return result_node
+
+def print_node(param_node: ListNode)->None:
+    temp_node, values = param_node, []
+    while temp_node is not None:
+        values.append(str(temp_node.val))
+        temp_node = temp_node.next
+    print('[', '->'.join(values), ']', sep=None)
+
+if __name__ == '__main__':
+    l_node = init_node([3, 7])
+    r_node = init_node([9, 2])
+
+    print_node(Solution().add_two_nums(l_node, r_node))
+</code></pre>
+<h2 id="java-solution"><a class="markdownIt-Anchor" href="#java-solution"></a> <code>Java Solution</code></h2>
+<h3 id="code-2"><a class="markdownIt-Anchor" href="#code-2"></a> code</h3>
+<pre><code>
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode(0);
+        ListNode step = result;
+        ListNode l_hand = l1;
+        ListNode r_hand = l2;
+        int node_sum = 0;
+        for(;l_hand != null || r_hand != null;){
+            node_sum /= 10;
+            if (l_hand != null){
+                node_sum += l_hand.val;
+                l_hand = l_hand.next;
+            }
+
+            if (r_hand !=null){
+                node_sum += r_hand.val;
+                r_hand = r_hand.next;
+            }
+
+            step.next = new ListNode(node_sum % 10);
+            step = step.next;
+        }
+        if (node_sum / 10 > 0){
+            step.next = new ListNode(1);
+        }
+        return result.next;
+    }
+
+    //TestCase
+    public static void printNode(ListNode node){
+        while (node != null){
+            System.out.println(node.val);
+            node = node.next;
+        }
+    }
+
+    public static void main(String[] args){
+        //不要问我这两个数组时哪里来的，没有错误的程序是不会知道的
+        int[] arr1 = {1,6,6,0,5,8,1,0,7};
+        int[] arr2 = {8,2,5,7,9,1,0,2,2,1};
+        printNode(new AddTwoNumbers().addTwoNumbers(initList(arr1), initList(arr2)));
+    }
+}
+
+class ListNode {
+     int val;
+      ListNode next;
+      ListNode(int x) { val = x; }
+}
+
+</code></pre>
+<h2 id="c-solution"><a class="markdownIt-Anchor" href="#c-solution"></a> <code>C++ Solution</code></h2>
+<h3 id="code-3"><a class="markdownIt-Anchor" href="#code-3"></a> code</h3>
+<pre><code>
+#ifndef NULL
+#ifdef __cplusplus
+#define NULL 0
+#else
+#define NULL ((void *)0)
+#endif
+#endif
+
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int x) : val(x), next(NULL) {}
+	
+};
+
+class AddTwoNumbers {
+public:
+	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
+	{
+		ListNode head(0);
+		ListNode *step = &head, *l_hand = l1, *r_hand = l2;
+		int node_sum = 0;
+		for (; l_hand || r_hand;) 
+		{
+			node_sum /= 10;
+			if (l_hand) 
+			{
+				node_sum += l_hand->val;
+				l_hand = l_hand->next;
+			}
+
+			if (r_hand) 
+			{
+				node_sum += r_hand->val;
+				r_hand = r_hand->next;
+			}
+
+			step->next = new ListNode(node_sum % 10);
+			step = step->next;
+		}
+		if (node_sum / 10 > 0)
+		{
+			step->next = new ListNode(1);
+		}
+
+		return head.next;
+	}
+};
+
+</code></pre>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2017/02/19/add-two-numbers/" title="LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]" target="_blank" rel="external">http://yoursite.com/2017/02/19/add-two-numbers/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhangyebai" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhangyebai" target="_blank"><span class="text-dark">张夜白</span><small class="ml-1x">后端开发</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/02/13/Singleton/" title="Singleton - 单例模式 - Java"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhangyebai" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

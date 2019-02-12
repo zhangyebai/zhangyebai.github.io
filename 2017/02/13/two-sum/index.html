@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>LeetCode - 001 - Two Sum (Easy) [Java,Python,C++] | Hexo</title>
+  <meta name="description" content="Descripiton Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not u">
+<meta name="keywords" content="leetcode,Java,Python,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/two-sum/index.html">
+<meta property="og:site_name" content="一码平川">
+<meta property="og:description" content="Descripiton Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not u">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-12T07:44:10.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]">
+<meta name="twitter:description" content="Descripiton Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not u">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/two-sum/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一码平川" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhangyebai" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">张夜白</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">后端开发</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhangyebai" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode-Java-Python-C/">leetcode,Java,Python,C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/Design-Pattern/" style="font-size: 13px;">Design Pattern</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/leetcode/" style="font-size: 13px;">leetcode</a> <a href="/tags/leetcode-Java-Python-C/" style="font-size: 13px;">leetcode,Java,Python,C++</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/19/add-two-numbers/" class="title">LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-19T07:08:44.000Z" itemprop="datePublished">2017-02-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/Singleton/" class="title">Singleton - 单例模式 - Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-13T15:48:30.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/two-sum/" class="title">LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-12T21:02:51.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-two-sum" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/02/13/two-sum/" class="article-date">
+	  <time datetime="2017-02-12T21:02:51.000Z" itemprop="datePublished">2017-02-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/C/">C++</a>, <a class="article-tag-link" href="/tags/Java/">Java</a>, <a class="article-tag-link" href="/tags/Python/">Python</a>, <a class="article-tag-link" href="/tags/leetcode/">leetcode</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/02/13/two-sum/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="descripiton"><a class="markdownIt-Anchor" href="#descripiton"></a> Descripiton</h1>
+<pre><code>Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+给定一个整形数组array，给定一个整形目标数target，返回array数组中2个相加等于目标数target的元素索引index。
+假设每次输入的数组都有为恰好只有唯一解，而且不能使用array数组中的元素超过一次。
+</code></pre>
+<h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
+<pre><code>Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+</code></pre>
+<h1 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h1>
+<ul>
+<li>利用map数据结构的Key-Value键值对的存储特点，遍历array数组时，查看当前数组元素value与目标target的差（<strong>target - value</strong>）是否在map的keys中，如果存在说明前面的遍历时找到了第一个value，取出索引并返回当前索引即可;如果没找到，将当前value作为key，当前索引index作为key的value放置进map继续遍历即可。
+<ul>
+<li>Python中map数据结构为字典（dict）</li>
+<li>适当关注一下c++中std::map和std::vector的相关操作</li>
+<li>以下代码截止到提交日期，均已被LeetCode AC</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="python-solution"><a class="markdownIt-Anchor" href="#python-solution"></a> <code>Python Solution</code></h2>
+<h3 id="code"><a class="markdownIt-Anchor" href="#code"></a> code</h3>
+<pre><code>
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
+class Solution(object):
+	def two_num(nums, target)->object:
+		nums_dict = {}
+		for loop, value in enumerate(nums):
+			if nums_dict.__contains__(target - value):
+				return [nums_dict[target - value], loop]
+			else:
+				nums_dict[value] = loop
+
+#TestCase
+if __name__ == '__main__':
+    num_list = [2, 7, 11, 15]
+    target_num = 22
+    result = Solution().two_num(num_list, target_num)
+    try:
+        for index in result:
+            print('->'.join([str(index), str(num_list[index])]))
+    except TypeError:
+        print('no target to find')
+</code></pre>
+<h2 id="java-solution"><a class="markdownIt-Anchor" href="#java-solution"></a> <code>Java Solution</code></h2>
+<h3 id="code-2"><a class="markdownIt-Anchor" href="#code-2"></a> code</h3>
+<pre><code>
+public class Solution{
+	public int[] twoSum(int[] nums, int target) {
+		int[] result = new int[2];
+		Map&ltInteger, Integer> map = new HashMap&ltInteger, Integer>();
+		for(int index = 0, length = nums.length; index < length; ++index){
+			if (map.containsKey(target - nums[index])){
+		    	result[0] = map.get(target - nums[index]);
+		        result[1] = index;
+		        }else{
+		        	map.put(nums[index], index);
+		        }
+		}
+		return result;
+	}
+}
+
+</code></pre>
+<h2 id="c-solution"><a class="markdownIt-Anchor" href="#c-solution"></a> <code>C++ Solution</code></h2>
+<h3 id="code-3"><a class="markdownIt-Anchor" href="#code-3"></a> code</h3>
+<pre><code>
+#include &lt;vector>
+#include &lt;map>
+class Solution {
+public:
+	std::vector<int> twoSum(std::vector<int>& nums, int target) {
+		std::vector<int> result;
+		std::map<int, int=""> loop;
+		for (std::size_t index = 0; index < nums.size(); ++index)
+		{
+			if (loop.find(target - nums.at(index)) != loop.cend())
+			{
+				result.push_back(loop.at(target - nums.at(index)));
+				result.push_back(index);
+			}
+			else
+			{
+				loop.insert(std::map<int, int="">::value_type(nums.at(index), index));
+			}
+		}
+		return result;
+	}
+};
+
+//TestCase
+#include &lt;iostream>
+int main()
+{
+	Solution solution;
+	std::vector<int> nums = { 2, 7, 11, 15 };
+	std::vector<int> result = solution.twoSum(nums, 9);
+	for(std::vector<int>::iterator iter = result.begin(); iter != result.end(); ++iter)
+		std::cout << *iter << std::endl;
+	int timing = 0;
+	std::cin >> timing;
+    return 0;
+}
+</int></int></int></int,></int,></int></int></int></code></pre>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2017/02/13/two-sum/" title="LeetCode - 001 - Two Sum (Easy) [Java,Python,C++]" target="_blank" rel="external">http://yoursite.com/2017/02/13/two-sum/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhangyebai" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhangyebai" target="_blank"><span class="text-dark">张夜白</span><small class="ml-1x">后端开发</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/02/13/Singleton/" title="Singleton - 单例模式 - Java"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhangyebai" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
