@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="一码平川">
 <meta property="og:description" content="Descripiton You are given two non-empty linked lists representing two non-negative integers. The digits are stored in   reverse order and each of their nodes contain a single digit. Add the two numbe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-12T09:22:55.390Z">
+<meta property="og:updated_time" content="2019-02-12T09:45:23.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode - 002 - Add Two Numbers (Medium) [Java,Python,C++]">
 <meta name="twitter:description" content="Descripiton You are given two non-empty linked lists representing two non-negative integers. The digits are stored in   reverse order and each of their nodes contain a single digit. Add the two numbe">
@@ -320,7 +320,7 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="descripiton"><a class="markdownIt-Anchor" href="#descripiton"></a> Descripiton</h1>
+        <h2 id="descripiton"><a class="markdownIt-Anchor" href="#descripiton"></a> Descripiton</h2>
 <pre><code>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in  
 reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
@@ -333,18 +333,18 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 	因为表示顺序是反着的，所以进位也是反着的。
 假设这两个数字不包含任何的头结点0，除了数字0本身。
 </code></pre>
-<h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
+<h2 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h2>
 <pre><code>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
 Output: 7 -&gt; 0 -&gt; 8
 </code></pre>
-<h1 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h1>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
 <pre><code>通过描述中的大致分析可以看出，需要遍历两个Linked-List中的对应的Node并取数相加，然后生成新Node并添加到result的Link-List中。
 	- 2个Linked-List中对应的Node，如果有一个为null，一个不为null，则结果节点直接使用不为null的Node中的值去构造即可;
 	- 如果两个Node相加需要进位，切记是向后进位，如果有后续Node，计算是需要加上进位;
 	- 如果两个Node相加需要进位，且没有后续Node，则需要添加一个Node，值用进位的数即可;
 	- 以下代码截止到提交日期，均已被LeetCode AC；
 </code></pre>
-<a id="more"></a>
 <h2 id="python-solution"><a class="markdownIt-Anchor" href="#python-solution"></a> <code>Python Solution</code></h2>
 <h3 id="code"><a class="markdownIt-Anchor" href="#code"></a> code</h3>
 <pre><code>
