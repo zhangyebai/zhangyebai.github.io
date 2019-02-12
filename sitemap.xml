@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.zhangyebai.com/2019/02/12/maximum-sub-array/</loc>
+    
+    <lastmod>2019-02-12T14:06:46.189Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.zhangyebai.com/2017/02/19/add-two-numbers/</loc>
     
-    <lastmod>2019-02-12T11:57:32.085Z</lastmod>
+    <lastmod>2019-02-12T13:48:12.290Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.zhangyebai.com/2017/02/13/two-sum/</loc>
+    
+    <lastmod>2019-02-12T12:06:32.108Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.zhangyebai.com/2017/02/13/Singleton/</loc>
+    
+    <lastmod>2019-02-12T12:06:29.543Z</lastmod>
     
   </url>
   
@@ -26,20 +47,6 @@
     <loc>http://www.zhangyebai.com/tags/index.html</loc>
     
     <lastmod>2019-02-12T09:30:44.034Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.zhangyebai.com/2017/02/13/two-sum/</loc>
-    
-    <lastmod>2019-02-12T07:44:10.395Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.zhangyebai.com/2017/02/13/Singleton/</loc>
-    
-    <lastmod>2019-02-12T07:44:10.375Z</lastmod>
     
   </url>
   
