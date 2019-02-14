@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhangyebai.com/"/>
-  <updated>2019-02-14T15:50:20.705Z</updated>
+  <updated>2019-02-14T15:52:18.727Z</updated>
   <id>http://www.zhangyebai.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>python-zen-format-dict-one-word</title>
+    <title>编程之禅 —— 一行代码系列</title>
     <link href="http://www.zhangyebai.com/2019/02/14/python-zen-format-dict-one-word/"/>
     <id>http://www.zhangyebai.com/2019/02/14/python-zen-format-dict-one-word/</id>
     <published>2019-02-14T15:23:20.000Z</published>
-    <updated>2019-02-14T15:50:20.705Z</updated>
+    <updated>2019-02-14T15:52:18.727Z</updated>
     
     <content type="html"><![CDATA[<h3 id="the-zen-of-python-one-line-code"><a class="markdownIt-Anchor" href="#the-zen-of-python-one-line-code"></a> The Zen of Python: One Line Code</h3><blockquote><p>今天有一位Python刚入门的女性朋友请教我一个问题: 有一个list, 其中存储的是dict, 每个dict<br>的key是相同的,dict的值是整型数值, 请用Python代码将其输出成表格格式。例如:</p></blockquote><pre><code>\[{'a': 1, 'b': 2, 'c': 3}, {'a': 4, 'b': 5, 'c': 6}, {'a': 7, 'b': 8, 'c': 9}\]=&gt; a b c   1 2 3   4 5 6   7 8 9</code></pre><p>其实是很简单的需求, 后来仔细琢磨想起逛知乎时大家晒的一行代码,决定尝试一下。刚开始思考从各种iterator入手<br>做处理, 尝试了很久不得其法。由于这两年写Java写的太多,灵光一闪想到functional program中各种apply、map、<br>reduce、filter等函数式写法, 一查之下Python果然有这种写法,遂得之。代码如下</p><h3 id="one-line-code"><a class="markdownIt-Anchor" href="#one-line-code"></a> One Line Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">format</span><span class="params">(lst: list)</span> -&gt; str:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\n'</span>.join([<span class="string">' '</span>.join(lst[<span class="number">0</span>]), <span class="string">'\n'</span>.join(map(<span class="keyword">lambda</span> d : <span class="string">' '</span>.join([str(x) <span class="keyword">for</span> x <span class="keyword">in</span> d.values()]), lst))])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    data = [&#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>&#125;, &#123;<span class="string">'a'</span>: <span class="number">4</span>, <span class="string">'b'</span>: <span class="number">5</span>, <span class="string">'c'</span>: <span class="number">6</span>&#125;, &#123;<span class="string">'a'</span>: <span class="number">7</span>, <span class="string">'b'</span>: <span class="number">8</span>, <span class="string">'c'</span>: <span class="number">9</span>&#125;\]</span><br><span class="line">    print(format(data))</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="origin-code"><a class="markdownIt-Anchor" href="#origin-code"></a> Origin Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">format</span><span class="params">(lst: list)</span> -&gt; str:</span></span><br><span class="line">    header = <span class="string">' '</span>.join(lst[<span class="number">0</span>])</span><br><span class="line">    store = []</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> lst:</span><br><span class="line">        store.append(<span class="string">' '</span>.join(str(x) <span class="keyword">for</span> x <span class="keyword">in</span> item.values()))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\n'</span>.join([header, <span class="string">'\n'</span>.join(store)])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    data = [&#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>&#125;, &#123;<span class="string">'a'</span>: <span class="number">4</span>, <span class="string">'b'</span>: <span class="number">5</span>, <span class="string">'c'</span>: <span class="number">6</span>&#125;, &#123;<span class="string">'a'</span>: <span class="number">7</span>, <span class="string">'b'</span>: <span class="number">8</span>, <span class="string">'c'</span>: <span class="number">9</span>&#125;\]</span><br><span class="line">    print(format(data))</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -142,9 +142,9 @@ reduce、filter等函数式写法, 一查之下Python果然有这种写法,遂�
       <category term="LeetCode" scheme="http://www.zhangyebai.com/categories/LeetCode/"/>
     
     
-      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
-    
       <category term="leetcode" scheme="http://www.zhangyebai.com/tags/leetcode/"/>
+    
+      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
     
   </entry>
   
@@ -182,9 +182,9 @@ Output: 7 -&amp;gt; 0 -&amp;gt; 8
       <category term="LeetCode" scheme="http://www.zhangyebai.com/categories/LeetCode/"/>
     
     
-      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
-    
       <category term="leetcode" scheme="http://www.zhangyebai.com/tags/leetcode/"/>
+    
+      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
     
       <category term="Python" scheme="http://www.zhangyebai.com/tags/Python/"/>
     
@@ -227,11 +227,11 @@ Output: 7 -&amp;gt; 0 -&amp;gt; 8
       <category term="Design Pattern" scheme="http://www.zhangyebai.com/categories/Design-Pattern/"/>
     
     
+      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
+    
       <category term="设计模式" scheme="http://www.zhangyebai.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="Design Pattern" scheme="http://www.zhangyebai.com/tags/Design-Pattern/"/>
-    
-      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
     
   </entry>
   
@@ -265,9 +265,9 @@ return [0, 1].
       <category term="LeetCode" scheme="http://www.zhangyebai.com/categories/LeetCode/"/>
     
     
-      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
-    
       <category term="leetcode" scheme="http://www.zhangyebai.com/tags/leetcode/"/>
+    
+      <category term="Java" scheme="http://www.zhangyebai.com/tags/Java/"/>
     
       <category term="Python" scheme="http://www.zhangyebai.com/tags/Python/"/>
     
