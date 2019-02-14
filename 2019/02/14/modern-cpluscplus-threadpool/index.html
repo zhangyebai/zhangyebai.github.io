@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>手写线程池 modern-cpluscplus-threadpool | 一码平川</title>
+  <meta name="description" content="C++线程池  进程的创建和销毁,代价是昂贵的,除去操作系统的实现及其本身的原理,跟线程相比它更显得重量级。 这几年互联网的迅速发展,让线程正面临着跟进程一样的“重量级”困扰。尤其是GO等语言退出协程(纤程) 后,线程更是不堪其重。那么有没有改进的方向呢？有,将线程池化——线程池。  由于C版本推进的历程(C++98, C++03, C++11, C++14, C++17, C++20)以及其">
+<meta name="keywords" content="C++,线程,线程池">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写线程池 modern-cpluscplus-threadpool">
+<meta property="og:url" content="http://www.zhangyebai.com/2019/02/14/modern-cpluscplus-threadpool/index.html">
+<meta property="og:site_name" content="一码平川">
+<meta property="og:description" content="C++线程池  进程的创建和销毁,代价是昂贵的,除去操作系统的实现及其本身的原理,跟线程相比它更显得重量级。 这几年互联网的迅速发展,让线程正面临着跟进程一样的“重量级”困扰。尤其是GO等语言退出协程(纤程) 后,线程更是不堪其重。那么有没有改进的方向呢？有,将线程池化——线程池。  由于C版本推进的历程(C++98, C++03, C++11, C++14, C++17, C++20)以及其">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-14T09:04:39.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手写线程池 modern-cpluscplus-threadpool">
+<meta name="twitter:description" content="C++线程池  进程的创建和销毁,代价是昂贵的,除去操作系统的实现及其本身的原理,跟线程相比它更显得重量级。 这几年互联网的迅速发展,让线程正面临着跟进程一样的“重量级”困扰。尤其是GO等语言退出协程(纤程) 后,线程更是不堪其重。那么有没有改进的方向呢？有,将线程池化——线程池。  由于C版本推进的历程(C++98, C++03, C++11, C++14, C++17, C++20)以及其">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://www.zhangyebai.com/2019/02/14/modern-cpluscplus-threadpool/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一码平川" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhangyebai" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">张夜白</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">后端开发</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrameWork/">FrameWork</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13.67px;">C++</a> <a href="/tags/Design-Pattern/" style="font-size: 13px;">Design Pattern</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/leetcode/" style="font-size: 13.67px;">leetcode</a> <a href="/tags/线程/" style="font-size: 13px;">线程</a> <a href="/tags/线程池/" style="font-size: 13px;">线程池</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/FrameWork/">FrameWork</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/modern-cpluscplus-threadpool/" class="title">手写线程池 modern-cpluscplus-threadpool</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-14T06:38:00.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/12/maximum-sub-array/" class="title">LeetCode - 053 - Maximum-Sub-Array</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-12T13:37:45.000Z" itemprop="datePublished">2019-02-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/19/add-two-numbers/" class="title">LeetCode - 002 - Add Two Numbers (Medium)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-19T07:08:44.000Z" itemprop="datePublished">2017-02-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Design-Pattern/">Design Pattern</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/Singleton/" class="title">Singleton - 单例模式 - Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-13T15:48:30.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/02/13/two-sum/" class="title">LeetCode - 001 - Two Sum (Easy)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-02-12T21:02:51.000Z" itemprop="datePublished">2017-02-13</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-modern-cpluscplus-threadpool" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      手写线程池 modern-cpluscplus-threadpool
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/02/14/modern-cpluscplus-threadpool/" class="article-date">
+	  <time datetime="2019-02-14T06:38:00.000Z" itemprop="datePublished">2019-02-14</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/FrameWork/">FrameWork</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/C/">C++</a>, <a class="article-tag-link" href="/tags/线程/">线程</a>, <a class="article-tag-link" href="/tags/线程池/">线程池</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/02/14/modern-cpluscplus-threadpool/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="c线程池"><a class="markdownIt-Anchor" href="#c线程池"></a> C++线程池</h2>
+<blockquote>
+<p>进程的创建和销毁,代价是昂贵的,除去操作系统的实现及其本身的原理,跟线程相比它更显得重量级。<br>
+这几年互联网的迅速发展,让线程正面临着跟进程一样的“重量级”困扰。尤其是GO等语言退出协程(纤程)<br>
+后,线程更是不堪其重。那么有没有改进的方向呢？有,将线程池化——线程池。</p>
+</blockquote>
+<p>由于C<ins>版本推进的历程(<code>C++98</code>, <code>C++03</code>, <code>C++11</code>, <code>C++14</code>, <code>C++17</code>, <code>C++20</code>)以及其<br>
+弱鸡般的ABI兼容性,导致很多框架用起来得自己造轮子。C</ins>版本再吐槽一句好了, C++即使版本推进到<br>
+0xff, 对很多人来说还是c with class, 包括我。<br>
+我们的目标是, 造一个很Java中的ThreadPool类似的线程池。目前的进度:</p>
+<ul>
+<li>[x] 极其简易的线程池(header only)</li>
+<li>[x] 支持设置线程池核心线程数</li>
+<li>[ ] 支持设置线程池最大线程数</li>
+<li>[ ] 支持设置最大缓存的任务数</li>
+<li>[ ] 支持设置任务提交拒绝策略</li>
+</ul>
+<a id="more"></a>
+<p>线程池中的概念:</p>
+<ul>
+<li>job: 需要在线程中执行的代码
+<ul>
+<li>例如: void read(const string &amp; path, const HANDLE handle);</li>
+<li>该函数从文本中读取内容然后交给窗口渲染到界面上</li>
+</ul>
+</li>
+<li>task: 将job封装成一个task, 由于job的函数签名各异,所以需要封装(Java的job是Runnable,接口签名一致)。
+<ul>
+<li>例如: auto task = [=]()-&gt;void { return read(path, handle); }</li>
+<li>这样就将签名各异的job统一封装成了std::function&lt;void()&gt;类型的task</li>
+<li>通过std::packaged_task和std::future处理job被异步调用的返回值</li>
+</ul>
+</li>
+<li>queue: 缓存task的队列, 队列操作和线程池中的线程耦合度很高, 原因如下:
+<ul>
+<li>队列中的任务少时, 池中的空闲线程如何做到真正的不占用cpu?
+<ul>
+<li>目前此项目是通过std::condition_variable的条件判断让空闲线程阻塞从而让出cpu</li>
+<li>Java中是通过实现BlockQueue实现的,也就是队列中没有任务时,线程从队列中get会阻塞, 从而让出cpu</li>
+<li>也可以通过信号量 互斥量实现</li>
+</ul>
+</li>
+<li>队列read write操作时, 可根据现实情况实现读优先、写优先的锁来平衡队列task的生产和消费, 目前此项目不支持</li>
+<li>设置queue的最大缓存task数</li>
+<li>为什么采取队列, 是为了保证task被执行的优先级(队列可以保证先提交的task被先执行,但是不保证先提交的task被先执行完)</li>
+</ul>
+</li>
+<li>thread: 采用C++11 标准库中的std::thread
+<ul>
+<li>根据std::thread::hardware_concurrency()获取cpu数量进行任务cpu友好性优化, 目前此项目不支持</li>
+<li>设置thread的cpu亲和性优化程序执行（Windows平台:通过SetThreadAffinityMask指定线程在cpu哪个核心上运行）</li>
+</ul>
+</li>
+</ul>
+<p>###Code</p>
+<p><a href="https://github.com/zhangyebai/cplusplus-elf/tree/master/thread-pool" target="_blank" rel="noopener">Code On GitHub</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _THREAD_POOL_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _THREAD_POOL_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 几个需要注意的点:</span></span><br><span class="line"><span class="comment"> * 1、tasks的读写锁需要优化成带优先级的锁, 可以肯定线程池的绝大部分使用场景commit task比run task更密集</span></span><br><span class="line"><span class="comment"> * 2、根据tasks以及cpu扩展线程数</span></span><br><span class="line"><span class="comment"> * 3、支持允许缓存的task数,如果超出此数将采取拒绝策略</span></span><br><span class="line"><span class="comment"> * 4、拒绝策略</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    ThreadPool(<span class="keyword">int</span> core, <span class="keyword">int</span> max = <span class="number">0</span>, <span class="keyword">int</span> cache = <span class="number">0</span>): core(core),<span class="comment">//由于max和cache暂时没用到,因此赋值0</span></span><br><span class="line">                    max(max), cache(cache), quit(<span class="literal">false</span>), force(<span class="literal">false</span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    ~ThreadPool()&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;quit.store(<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">this</span>-&gt;enable.notify_all();</span><br><span class="line">        <span class="built_in">std</span>::for_each(<span class="keyword">this</span>-&gt;pool.begin(), <span class="keyword">this</span>-&gt;pool.end(), [](<span class="built_in">std</span>::thread &amp; t)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t.joinable())&#123;</span><br><span class="line">                t.join();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> idx = <span class="number">0</span>; idx &lt; core; ++idx)&#123;</span><br><span class="line">            pool.push_back(<span class="built_in">std</span>::thread([<span class="keyword">this</span>]()&#123;</span><br><span class="line">                <span class="comment">// 第一次退出,判断是否要强制退出</span></span><br><span class="line">                <span class="keyword">bool</span> quit = <span class="keyword">this</span>-&gt;force.load() ? <span class="keyword">this</span>-&gt;quit.load() : <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">for</span>(; !quit;)&#123;</span><br><span class="line">                    <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock(<span class="keyword">this</span>-&gt;oper_lock);</span><br><span class="line">                    <span class="keyword">this</span>-&gt;enable.wait(lock, [<span class="keyword">this</span>]()&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;quit.load() || !<span class="keyword">this</span>-&gt;tasks.empty();</span><br><span class="line">                    &#125;);</span><br><span class="line">                    <span class="comment">// 不是强制退出时可从这里退出</span></span><br><span class="line">                    <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;quit.load() &amp;&amp; <span class="keyword">this</span>-&gt;tasks.empty())&#123;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">std</span>::function&lt;<span class="keyword">void</span>()&gt; task = <span class="built_in">std</span>::move(<span class="keyword">this</span>-&gt;tasks.front());</span><br><span class="line">                    <span class="keyword">this</span>-&gt;tasks.pop();</span><br><span class="line"></span><br><span class="line">                    task();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">(<span class="keyword">bool</span> force = <span class="literal">false</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;quit.store(<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">this</span>-&gt;force.store(force);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//void commit(std::function&lt;void (void * param)&gt; task);</span></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span>... <span class="title">Args</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="title">auto</span> <span class="title">commit</span>(<span class="title">T</span> &amp;&amp; <span class="title">t</span>, <span class="title">Args</span>&amp;&amp;...<span class="title">args</span>)-&gt;<span class="title">std</span>:</span>:future&lt;<span class="keyword">decltype</span>(t(args...))&gt;&#123;</span><br><span class="line">        <span class="keyword">using</span> TYPE = <span class="keyword">decltype</span>(t(args...));</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;quit.load())&#123;</span><br><span class="line">            <span class="comment">//dont know return what, so throw an exception</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::runtime_error(<span class="string">"thread pool is alreay shutdown."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 1、std::packaged_task&lt;decltype(f(args...))() 类似std::function\</span></span><br><span class="line">            但是会将其封装的可调用元素的结果封装在<span class="built_in">std</span>::future中</span><br><span class="line">        <span class="comment">// 2、std::make_shared 创建std::packaged_task&lt;decltype(f(args...))()\</span></span><br><span class="line">            类型的智能指针</span><br><span class="line">        <span class="comment">// 3、std::bind(std::forward&lt;T&gt;(t), std::forward&lt;Args&gt;(args)...)当做\</span></span><br><span class="line">            <span class="built_in">std</span>::packaged_task的构造参数</span><br><span class="line">        <span class="keyword">auto</span> task = <span class="built_in">std</span>::make_shared&lt;<span class="built_in">std</span>::packaged_task&lt;TYPE()&gt; &gt;( </span><br><span class="line">            <span class="built_in">std</span>::bind(<span class="built_in">std</span>::forward&lt;T&gt;(t), <span class="built_in">std</span>::forward&lt;Args&gt;(args)...)</span><br><span class="line">        );</span><br><span class="line">        <span class="built_in">std</span>::future&lt;TYPE&gt; result = task-&gt;get_future();</span><br><span class="line">        <span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock(<span class="keyword">this</span>-&gt;oper_lock);</span><br><span class="line">        <span class="comment">//将packaged_task 包裹在一个签名为void()的lambda函数中调用,因为此lambda函数符合std::function&lt;void()&gt;\</span></span><br><span class="line">            的签名,所以可以放到<span class="built_in">queue</span>中</span><br><span class="line">        <span class="keyword">this</span>-&gt;tasks.emplace([task]()&#123;</span><br><span class="line">            (*task)();  <span class="comment">//调用packaged_task</span></span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">this</span>-&gt;enable.notify_one();  <span class="comment">// 在线程池中唤醒一个休眠的线程</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//void move();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::thread&gt; pool;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;<span class="built_in">std</span>::function&lt;<span class="keyword">void</span>()&gt; &gt; tasks;</span><br><span class="line">    <span class="keyword">int</span> core;   <span class="comment">//线程池核心线程数</span></span><br><span class="line">    <span class="keyword">int</span> max;    <span class="comment">//线程池根据tasks量以及cpu数最大可扩展的量</span></span><br><span class="line">    <span class="keyword">int</span> cache;  <span class="comment">//运行tasks可缓存的最大task数,超出次数后commit将采取拒绝策略</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; quit;     <span class="comment">//线程池shutdown条件, true时shutdown</span></span><br><span class="line">    <span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; force;    <span class="comment">//是否强制shutdown,true时有剩余的task将不执行直接退出, false时等待执行完所有的task再退出</span></span><br><span class="line">    <span class="built_in">std</span>::condition_variable enable;     <span class="comment">//</span></span><br><span class="line">    <span class="built_in">std</span>::mutex oper_lock;   <span class="comment">// queue的读写锁</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>###Test Code</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"./pool/ThreadPool.hpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span>&#123;</span><br><span class="line">    <span class="function">ThreadPool <span class="title">pool</span><span class="params">(<span class="number">4</span>)</span></span>;</span><br><span class="line">    pool.start();</span><br><span class="line">    <span class="built_in">std</span>::default_random_engine rd;</span><br><span class="line">    <span class="built_in">std</span>::uniform_int_distribution&lt;<span class="keyword">int</span>&gt; rang(<span class="number">100</span>, <span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx = <span class="number">0</span>; idx &lt; <span class="number">20</span>; ++idx)&#123;</span><br><span class="line">        pool.commit([=](<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> t)&#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread id : "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() </span><br><span class="line">                &lt;&lt; <span class="string">" x = "</span> &lt;&lt; x &lt;&lt; <span class="string">" y = "</span> &lt;&lt; y &lt;&lt;</span><br><span class="line">                <span class="string">" sleep time = "</span> &lt;&lt; t &lt;&lt; <span class="string">" ms"</span> &lt;&lt;</span><br><span class="line">                <span class="string">" id = "</span> &lt;&lt; idx &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">                </span><br><span class="line">            <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::milliseconds(t));</span><br><span class="line">        &#125;, rang(rd), rang(rd), rang(rd));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::future&lt;<span class="keyword">int</span>&gt; &gt; results;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> index = <span class="number">20</span>; index &lt; <span class="number">50</span>; ++index)&#123;</span><br><span class="line">        results.push_back(</span><br><span class="line">            pool.commit([=]()-&gt;<span class="keyword">int</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> index;</span><br><span class="line">            &#125;)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">auto</span> &amp; r : results)&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"get result from thread "</span></span><br><span class="line">        &lt;&lt; <span class="string">" index = "</span> &lt;&lt; r.get() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> command = <span class="built_in">std</span>::<span class="built_in">cin</span>.get();</span><br><span class="line">    <span class="keyword">if</span> (command == <span class="string">'q'</span>)&#123;</span><br><span class="line">        pool.shutdown(<span class="literal">true</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (command == <span class="string">'e'</span>)&#123;</span><br><span class="line">        pool.shutdown(<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            pool.commit([]()&#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"i want to get an exception"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(<span class="keyword">const</span> <span class="built_in">std</span>::exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; e.what() &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test finish, OY!"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="compile-link"><a class="markdownIt-Anchor" href="#compile-link"></a> Compile &amp; Link</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g -O3 -Wall -std=c++11 main.cpp -o ./out/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h3 id="run"><a class="markdownIt-Anchor" href="#run"></a> Run</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">thread id : 0x70000a352000 x = 242 y = 937 sleep time = 480 ms id = 0</span><br><span class="line">thread id : 0x70000a352000 x = 340 y = 390 sleep time = 692 ms id = 1</span><br><span class="line">thread id : 0x70000a352000 x = 188 y = 294 sleep time = 738 ms id = 2</span><br><span class="line">thread id : 0x70000a352000 x = 390 y = 978 sleep time = 270 ms id = 3</span><br><span class="line">thread id : 0x70000a4db000 x = 432 y = 780 sleep time = 102 ms id = 4</span><br><span class="line">thread id : 0x70000a458000 x = 652 y = 661 sleep time = 498 ms id = 5</span><br><span class="line">thread id : 0x70000a3d5000 x = 839 y = 452 sleep time = 487 ms id = 6</span><br><span class="line">thread id : 0x70000a352000 x = 698 y = 540 sleep time = 183 ms id = 7</span><br><span class="line">thread id : 0x70000a4db000 x = 157 y = 983 sleep time = 638 ms id = 8</span><br><span class="line">thread id : 0x70000a3d5000 x = 232 y = 823 sleep time = 766 ms id = 9</span><br><span class="line">thread id : 0x70000a458000 x = 801 y = 411 sleep time = 314 ms id = 10</span><br><span class="line">thread id : 0x70000a458000 x = 359 y = 912 sleep time = 294 ms id = 11</span><br><span class="line">thread id : 0x70000a458000 x = 260 y = 142 sleep time = 372 ms id = 12</span><br><span class="line">thread id : 0x70000a458000 x = 618 y = 499 sleep time = 831 ms id = 13</span><br><span class="line">thread id : 0x70000a458000 x = 108 y = 319 sleep time = 376 ms id = 14</span><br><span class="line">thread id : 0x70000a3d5000 x = 870 y = 490 sleep time = 519 ms id = 15</span><br><span class="line">thread id : 0x70000a352000 x = 446 y = 998 sleep time = 496 ms id = 16</span><br><span class="line">thread id : 0x70000a3d5000 x = 321 y = 308 sleep time = 610 ms id = 17</span><br><span class="line">thread id : 0x70000a3d5000 x = 247 y = 256 sleep time = 629 ms id = 18</span><br><span class="line">thread id : 0x70000a3d5000 x = 186 y = 484 sleep time = 703 ms id = 19</span><br><span class="line">get result from thread  index = 20</span><br><span class="line">get result from thread  index = 21</span><br><span class="line">get result from thread  index = 22</span><br><span class="line">get result from thread  index = 23</span><br><span class="line">get result from thread  index = 24</span><br><span class="line">get result from thread  index = 25</span><br><span class="line">get result from thread  index = 26</span><br><span class="line">get result from thread  index = 27</span><br><span class="line">get result from thread  index = 28</span><br><span class="line">get result from thread  index = 29</span><br><span class="line">get result from thread  index = 30</span><br><span class="line">get result from thread  index = 31</span><br><span class="line">get result from thread  index = 32</span><br><span class="line">get result from thread  index = 33</span><br><span class="line">get result from thread  index = 34</span><br><span class="line">get result from thread  index = 35</span><br><span class="line">get result from thread  index = 36</span><br><span class="line">get result from thread  index = 37</span><br><span class="line">get result from thread  index = 38</span><br><span class="line">get result from thread  index = 39</span><br><span class="line">get result from thread  index = 40</span><br><span class="line">get result from thread  index = 41</span><br><span class="line">get result from thread  index = 42</span><br><span class="line">get result from thread  index = 43</span><br><span class="line">get result from thread  index = 44</span><br><span class="line">get result from thread  index = 45</span><br><span class="line">get result from thread  index = 46</span><br><span class="line">get result from thread  index = 47</span><br><span class="line">get result from thread  index = 48</span><br><span class="line">get result from thread  index = 49</span><br><span class="line">e</span><br><span class="line">thread pool is alreay shutdown.</span><br><span class="line">test finish, OY!</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www.zhangyebai.com/2019/02/14/modern-cpluscplus-threadpool/" title="手写线程池 modern-cpluscplus-threadpool" target="_blank" rel="external">http://www.zhangyebai.com/2019/02/14/modern-cpluscplus-threadpool/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhangyebai" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhangyebai" target="_blank"><span class="text-dark">张夜白</span><small class="ml-1x">后端开发</small></a></h3>
+        <div>云猫奴。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/02/12/maximum-sub-array/" title="LeetCode - 053 - Maximum-Sub-Array"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
