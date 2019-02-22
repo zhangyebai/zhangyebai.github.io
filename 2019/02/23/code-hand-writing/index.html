@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>code-hand-writing | 一码平川</title>
+  <meta name="description" content="现在的IDE越来越智能, 没错我说的就是IDEA及其各种插件, 它几乎几乎能无缝贴合你编程时候的思想。有时候你甚至只需要敲一个字母, 它就能帮你联想一整句代码语句。各种错误检测手段、智能提示、优化提示是不是正在侵蚀程序员的思维呢？  最近我在压力下手书了两段代码, 惨不忍睹。真的会发慌, 不只是对陌生环境不适应(比如没有自己常用的开发环境), 更多的是感觉没有了IDE自己手写的每一行代码都是错的">
+<meta name="keywords" content="handwriting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="code-hand-writing">
+<meta property="og:url" content="http://www.zhangyebai.com/2019/02/23/code-hand-writing/index.html">
+<meta property="og:site_name" content="一码平川">
+<meta property="og:description" content="现在的IDE越来越智能, 没错我说的就是IDEA及其各种插件, 它几乎几乎能无缝贴合你编程时候的思想。有时候你甚至只需要敲一个字母, 它就能帮你联想一整句代码语句。各种错误检测手段、智能提示、优化提示是不是正在侵蚀程序员的思维呢？  最近我在压力下手书了两段代码, 惨不忍睹。真的会发慌, 不只是对陌生环境不适应(比如没有自己常用的开发环境), 更多的是感觉没有了IDE自己手写的每一行代码都是错的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-22T17:44:40.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="code-hand-writing">
+<meta name="twitter:description" content="现在的IDE越来越智能, 没错我说的就是IDEA及其各种插件, 它几乎几乎能无缝贴合你编程时候的思想。有时候你甚至只需要敲一个字母, 它就能帮你联想一整句代码语句。各种错误检测手段、智能提示、优化提示是不是正在侵蚀程序员的思维呢？  最近我在压力下手书了两段代码, 惨不忍睹。真的会发慌, 不只是对陌生环境不适应(比如没有自己常用的开发环境), 更多的是感觉没有了IDE自己手写的每一行代码都是错的">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://www.zhangyebai.com/2019/02/23/code-hand-writing/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一码平川" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhangyebai" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">张夜白</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">后端开发</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FrameWork/">FrameWork</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/源码趣闻/">源码趣闻</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之禅/">编程之禅</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/handwriting/">handwriting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zen/">zen</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13.5px;">C++</a> <a href="/tags/Design-Pattern/" style="font-size: 13px;">Design Pattern</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/Python/" style="font-size: 13.5px;">Python</a> <a href="/tags/c/" style="font-size: 13px;">c</a> <a href="/tags/c/" style="font-size: 13px;">c++</a> <a href="/tags/handwriting/" style="font-size: 13px;">handwriting</a> <a href="/tags/leetcode/" style="font-size: 13.5px;">leetcode</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a> <a href="/tags/zen/" style="font-size: 13px;">zen</a> <a href="/tags/线程/" style="font-size: 13px;">线程</a> <a href="/tags/线程池/" style="font-size: 13px;">线程池</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/23/code-hand-writing/" class="title">code-hand-writing</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-22T16:42:52.000Z" itemprop="datePublished">2019-02-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/源码趣闻/">源码趣闻</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/17/secret-in-redis-0x00/" class="title">redis里的小秘密[0x00]</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-17T09:51:43.000Z" itemprop="datePublished">2019-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/编程之禅/">编程之禅</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/python-zen-format-dict-one-word/" class="title">格式化输出字典 —— 编程之禅 —— 一行代码系列</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-14T15:23:20.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/FrameWork/">FrameWork</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/14/modern-cpluscplus-threadpool/" class="title">手写线程池 modern-cpluscplus-threadpool</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-14T06:38:00.000Z" itemprop="datePublished">2019-02-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/12/maximum-sub-array/" class="title">LeetCode - 053 - Maximum-Sub-Array</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-12T13:37:45.000Z" itemprop="datePublished">2019-02-12</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-code-hand-writing" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      code-hand-writing
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/02/23/code-hand-writing/" class="article-date">
+	  <time datetime="2019-02-22T16:42:52.000Z" itemprop="datePublished">2019-02-23</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/handwriting/">handwriting</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/02/23/code-hand-writing/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>现在的IDE越来越智能, 没错我说的就是IDEA及其各种插件, 它几乎几乎能无缝贴合你编程时候的思想。有时候你甚至只需要敲一个字母, 它就能帮你联想一整句代码语句。各种错误检测手段、智能提示、优化提示是不是正在侵蚀程序员的思维呢？</p>
+</blockquote>
+<p>最近我在压力下手书了两段代码, 惨不忍睹。真的会发慌, 不只是对陌生环境不适应(比如没有自己常用的开发环境), 更多的是感觉没有了IDE自己手写的每一行代码都是错的。</p>
+<a id="more"></a>
+<h3 id="冒泡排序"><a class="markdownIt-Anchor" href="#冒泡排序"></a> 冒泡排序</h3>
+<p>手书代码(一字未改):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] sort(<span class="keyword">int</span>[] arr)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">null</span> == arr)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span> == arr.length)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.length - i - j; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span> ( j = arr.length - <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>( arr[j] &gt; arr[j + <span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有什么问题?</p>
+<ol>
+<li>可以使用更优化的遍历方式避免数组越界判断</li>
+<li>可以使用更清晰的index起始方式让代码更易读</li>
+<li>既然判断了0 == length, 我觉得有必要同时判断length == 1的case</li>
+<li>我甚至函数名只写了sort, 当时脑海中并没有浮现bubble这个单词</li>
+<li>我几乎在提交的那一刹就想起了这些问题</li>
+</ol>
+<p>优化的代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] bubbleSort(<span class="keyword">int</span>[] arr)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == arr)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> == arr.length || <span class="number">1</span> == arr.length)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = arr.length - <span class="number">1</span>; i &gt;=<span class="number">0</span>; --i)&#123;</span><br><span class="line">        <span class="keyword">for</span> ( <span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++ j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j + <span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="递归的问题"><a class="markdownIt-Anchor" href="#递归的问题"></a> 递归的问题</h3>
+<p>斐波那契数列第N项</p>
+<p>手书代码(一字未改):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( index == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>( index == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> calc(n - <span class="number">1</span>) + calc(n -<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段手书代码有什么问题:</p>
+<ol>
+<li>少了参数n的范围判断, 负值的情况</li>
+<li>手书过程中没有想起尾递归优化</li>
+<li>手书过程中没有想起循环优化递归</li>
+<li>提交的一刹那我想起来了这些问题</li>
+<li>我甚至连fibonacci都想不起来怎么拼, 所以只能写个calc</li>
+</ol>
+<p>正常的递归代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    二叉树状展开栈</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fibo</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"fibonacci index cant be negative"</span>);</span><br><span class="line">    <span class="keyword">if</span>( index == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>( index == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> fibo(n - <span class="number">1</span>) + fibo(n -<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尾递归优化代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wrapper</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( index &lt;= <span class="number">0</span> ) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"fibonacci index cant be negative"</span>);</span><br><span class="line">    <span class="keyword">return</span> fiboTail(index, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    index: fibonacci 第N项</span></span><br><span class="line"><span class="comment">    pre: 代表index的前一项</span></span><br><span class="line"><span class="comment">    prepre: 代表index 的前两项</span></span><br><span class="line"><span class="comment">    可以看到是带着计算结果向下递归(也就是反向递归 == 尾递归), 线性展开栈</span></span><br><span class="line"><span class="comment">    其实它跟用循环代替递归有点像, 极大的减小了栈展开复杂度</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fiboTail</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> pre, <span class="keyword">int</span> prepre)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( index == <span class="number">1</span>) <span class="keyword">return</span> pre;</span><br><span class="line">    <span class="keyword">if</span>( index == <span class="number">2</span>) <span class="keyword">return</span> prepre;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fiboTail(index - <span class="number">1</span>, prepre, pre + prepre);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>循环版的代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    无栈展开</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fiboLoop</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( index &lt;= <span class="number">0</span> ) <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"fibonacci index cant be negative"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> idx = <span class="number">1</span>; idx &lt;= index; ++ idx)&#123;</span><br><span class="line">        <span class="keyword">if</span> ( idx == <span class="number">1</span>)&#123;</span><br><span class="line">            cur = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">if</span>( idx == <span class="number">2</span>)&#123;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp = cur;</span><br><span class="line">        cur = cur + pre;</span><br><span class="line">        pre = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结语:<br>
+我相信肯定不止我一个人面临这种问题, 这到底是技术让人退化了, 还是人利用技术升级了呢……<br>
+to be continue</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www.zhangyebai.com/2019/02/23/code-hand-writing/" title="code-hand-writing" target="_blank" rel="external">http://www.zhangyebai.com/2019/02/23/code-hand-writing/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhangyebai" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhangyebai" target="_blank"><span class="text-dark">张夜白</span><small class="ml-1x">后端开发</small></a></h3>
+        <div>云猫奴。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/02/17/secret-in-redis-0x00/" title="redis里的小秘密[0x00]"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
